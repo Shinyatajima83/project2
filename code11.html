@@ -1,0 +1,46 @@
+<!-- 
+    問題
+    キーボードの「p」を押すと箱の高さが-10px、「s」を押すと+30pxする処理を作成してください。 
+-->
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+        .box{
+            height: 100px;
+            width: 100px;
+            transition: height 0.1s linear;
+        }
+    </style>
+</head>
+<body>
+<div class="m-2">
+    <div class="box bg-primary d-block" id="pBlock">
+    </div>
+    <p>press up and down</p>
+  
+    <div>
+        <button class="btn btn-danger">+</button>
+        <button class="btn btn-danger">-</button>
+    </div>
+</div>
+<script>
+    let body = document.getElementsByTagName("body").item(0);
+
+    body.addEventListener("keydown", function(event){
+        console.log(event.key);
+
+        // ここからJavaScriptを記述してください。
+        let pBlock = document.getElementById("pBlock");
+        let pxIncrease = 30;
+        let pxDecrease = 10;
+
+        let height = pBlock.offsetHeight;
+
+        if (event.key === "s") {
+            pBlock.style.height = height + pxIncrease + "px";
+        } else if (event.key === "p") {
+            pBlock.style.height = height - pxDecrease + "px";
+        }
+    });
+</script>
+</body>
