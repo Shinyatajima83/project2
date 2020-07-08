@@ -1,0 +1,43 @@
+<!-- 
+問題
+キーボードを押して、そのキーをコンソールに出力させる処理を作成してください。 
+-->
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+        .box{
+            height: 100px;
+            width: 100px;
+            transition: height 0.1s linear;
+        }
+    </style>
+</head>
+<body>
+<div class="m-2">
+    <div class="box bg-primary d-block" id="pBlock">
+    </div>
+    <p>press up and down</p>
+  
+    <div>
+        <button class="btn">+</button>
+        <button class="btn">-</button>
+    </div>
+</div>
+<script>
+    // ここからJavaScriptを記述してください。 
+    　
+    // getElementsByTagNameメソッドで要素を配列(HTMLCollections)として取得します。
+    // itemメソッドは特定のインデックスのノードを返します。
+    // bodyタグを取得します。
+    let body = document.getElementsByTagName("body").item(0);
+  
+    // イベントがトリガーされると自動的にイベントオブジェクトが渡されます。
+    // Event インターフェイスは、DOM で発生するイベントを表します。今回はユーザーによって発生するイベントを表します。
+    // https://developer.mozilla.org/ja/docs/Web/API/Event 
+    // addEventListner("keydown", 関数) --> キーが押された時にステートメントを実行します。
+    body.addEventListener("keydown", function(event){
+        // keyプロパティによってどのキーが押されたかを調べます。
+        // codeプロパティを使うと大文字/小文字が区別されます。
+        console.log(event.key);
+    })
+</script>
