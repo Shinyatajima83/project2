@@ -1,0 +1,39 @@
+<!-- 
+    問題
+    先ほど、ボタンがクリックされると、赤いboxが消える関数を作成しました。ではボタンがクリックされると同時に緑のboxが出現する関数を作成し、赤いboxを消し、緑のboxを出現させてください。
+-->
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+        .box{
+            height: 100px;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="m-2">
+        <div class="box bg-danger d-block" id="pBlock">
+        </div>
+        <!-- 初期状態を変更してください。 -->
+        <div class="box bg-success d-none" id="sBlock">
+        </div>
+  
+        <!-- onclick属性。要素がクリックされた時に関数が実行されます。 -->
+        <button class="btn btn-primary mt-2" onclick="displayNone(document.getElementById(`pBlock`)); displayBlock(document.getElementById(`sBlock`))">Display Toggle</button>
+    </div>
+<script>
+    let pBlock = document.getElementById("pBlock");
+    let sBlock = document.getElementById("sBlock");
+
+    function displayNone(ele){
+        ele.classList.remove("d-block");
+        ele.classList.add("d-none");
+    }
+
+    // ここからJavaScriptを記述してください。
+    function displayBlock(ele){
+        ele.classList.remove("d-none");
+        ele.classList.add("d-block");
+    }
+</script>
