@@ -1,0 +1,32 @@
+<!-- 
+    問題
+    ボタンがクリックされると、赤いboxを消す関数を作成し、ブラウザから赤いboxを消してください。
+-->
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+        .box{
+            height: 100px;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="m-2">
+        <div class="box bg-danger d-block" id="pBlock">
+        </div>
+        <div class="box bg-success d-block">
+        </div>
+  
+        <button class="btn btn-primary mt-2" onclick="displayNone(document.getElementById(`pBlock`));">Display None</button>
+    </div>
+<script>
+    // ここからJavaScriptを記述してください。
+    let pBlock = document.getElementById("pBlock");
+
+    function displayNone(ele){
+        ele.classList.remove("d-block");
+        ele.classList.add("d-none");
+    }
+</script>
+</body>
