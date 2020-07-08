@@ -1,0 +1,119 @@
+<!-- 
+問題
+現在の要素、次の要素、rightかleftを受け取って、スライダーを実現するanimateMainという関数を作成してください。試しに関数を呼び出して、最初の箱と次の箱を使って、右方向へスライドさせてみましょう。
+-->
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+ 
+    <style>
+        .box{
+            height: 50vh;
+            padding: 0 !important;
+            transition: all 2s linear;
+        }
+
+        .full-width{
+           width:100%;
+           flex-shrink: 0;
+        }
+
+        .deplete-animation{
+            animation: deplete 1s linear forwards;
+        }
+
+        .expand-animation{
+            animation: deplete 1s linear reverse forwards;
+        }
+ 
+        @keyframes  deplete {
+            0%{
+                width: 100%;
+                opacity: 1;
+            }
+            100%{
+                width: 0%;
+                opacity: 0;
+            } 
+        }
+    </style>
+</head>
+<body>
+    <div id="target" class="m-5">
+        <div class="col-12 slider-data d-none">
+            <div class="box slider-item bg-primary"></div>
+            <div class="box slider-item bg-secondary"></div>
+            <div class="box slider-item bg-success"></div>
+            <div class="box slider-item bg-warning"></div>
+            <div class="box slider-item bg-danger"></div>
+        </div>
+    </div>
+
+    <script>
+        const target = document.getElementById("target");
+        const sliderItems = document.querySelectorAll("#target .slider-data .slider-item");
+      
+        let sliderShow = document.createElement("div");
+        let main = document.createElement("div");
+        let extra = document.createElement("div");
+
+        sliderShow.classList.add("col-12", "d-flex", "flex-nowrap", "overflow-hiddens");
+        main.classList.add("main", "full-width");
+        extra.classList.add("extra", "full-width");
+
+        main.append(sliderItems[0]);
+        
+        sliderShow.append(main);
+        sliderShow.append(extra);
+        target.append(sliderShow);
+
+        let controls = document.createElement("div");
+        controls.classList.add("offset-5", "mt-2");
+
+        let leftBtn = document.createElement("button");
+        leftBtn.classList.add("btn", "btn-light");
+        leftBtn.innerHTML = "<";
+ 
+        let rightBtn = document.createElement("button");
+        rightBtn.classList.add("btn", "btn-light");
+        rightBtn.innerHTML = ">";
+
+        controls.append(leftBtn);
+        controls.append(rightBtn);
+        target.append(controls);
+
+        main.setAttribute("data-index", "0");
+
+        function slideJump(steps) {
+            let index = parseInt(main.getAttribute("data-index"));
+            let currentElement = sliderItems.item(index);
+
+            index += steps;
+
+            if(index < 0) index = sliderItems.length -1;
+            else if(index >= sliderItems.length) index = 0;
+
+            let nextElement = sliderItems.item(index);
+
+            main.setAttribute("data-index", index.toString());
+        }
+
+        // ここからJavaScriptを記述してください。
+        function animateMain(currentElement, nextElement, animationType) {
+            extra.innerHTML = "";
+            extra.append(currentElement);
+ 
+            main.innerHTML = "";
+            main.append(nextElement);
+
+            main.classList.add("expand-animation");
+            extra.classList.add("deplete-animation");
+            
+            if(animationType === "right"){
+                sliderShow.innerHTML = "";
+                sliderShow.append(extra);
+                sliderShow.append(main);
+            }
+        }
+        animateMain(sliderItems[0], sliderItems[1], "right");
+    </script>
+</body>
