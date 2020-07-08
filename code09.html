@@ -1,0 +1,50 @@
+<!-- 
+    問題
+    ボタンを押すと、赤色のboxと緑色のboxが非表示 / 表示を繰り返す挙動を作成していきましょう。
+-->
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+        .box{
+            height: 100px;
+            width: 100px;
+        }
+    </style>
+ </head>
+ <body>
+    <div class="m-2">
+        <div class="box bg-danger d-block" id="pBlock">
+        </div>
+        <div class="box bg-success d-none" id="sBlock">
+        </div>
+
+        <!-- onclick属性。要素がクリックされた時にステートメントが実行されます。 -->
+        <!-- onclick属性にステートメントを入れてください。 -->
+        <button class="btn btn-primary mt-2" onclick="toggleDisplay(document.getElementById(`pBlock`), document.getElementById(`sBlock`))">Display Toggle</button>
+    </div>
+ <script>
+    let pBlock = document.getElementById("pBlock");
+    let sBlock = document.getElementById("sBlock");
+
+    function displayNone(ele){
+        ele.classList.remove("d-block");
+        ele.classList.add("d-none");
+    }
+
+    function displayBlock(ele){
+        ele.classList.remove("d-none");
+        ele.classList.add("d-block");
+    }
+
+    // ここからJavaScriptを記述してください。
+    function toggleDisplay(ele1, ele2){
+       if(ele1.classList.contains("d-block")){
+           displayNone(ele1);
+           displayBlock(ele2);
+       }
+       else{
+           displayNone(ele2);
+           displayBlock(ele1);
+       }
+    }
+</script>
